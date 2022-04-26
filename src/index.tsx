@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { QuizContextProvider } from "./context/QuizContext";
 import App from "./App";
 
 const root = ReactDOM.createRoot(
@@ -7,6 +9,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<App />
+		<BrowserRouter>
+			<QuizContextProvider>
+				<App />
+			</QuizContextProvider>
+		</BrowserRouter>
 	</React.StrictMode>
 );
