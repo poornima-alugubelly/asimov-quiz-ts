@@ -1,0 +1,37 @@
+.card-layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 1rem;
+}
+
+.card-layout .img-container img {
+	height: 12rem;
+	width: 100%;
+	object-fit: cover;
+}
+
+.question-card {
+	max-width: 40rem;
+}
+
+.option-selected {
+	background-color: var(--primary-color);
+	color: var(--ternary-color);
+}
+
+.option-wrong {
+	background-color: var(--red);
+	color: var(--secondary-color);
+	border: none;
+}
+
+.option-correct {
+	background-color: var(--green);
+	color: var(--secondary-color);
+	border: none;
+}
+
+.results button {
+	pointer-events: none;
+}
