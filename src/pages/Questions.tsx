@@ -75,9 +75,9 @@ export const Questions = () => {
 						</button>
 					))}
 				</div>
-				<div className="flex-space-between">
+				<div className="flex-space-between ">
 					<span
-						className={`link-colored ${
+						className={`link-colored pointer ${
 							currQuestion === 0 ? "btn-disabled" : ""
 						}`}
 						onClick={() => {
@@ -90,7 +90,7 @@ export const Questions = () => {
 						<i className="fas fa-chevron-left"></i> Prev
 					</span>
 					<span
-						className="link-colored"
+						className="link-colored pointer"
 						onClick={() => {
 							currQuestion + 1 === questions?.length
 								? submitHandler()

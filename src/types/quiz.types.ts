@@ -1,7 +1,3 @@
-export type reactChildren = {
-	children: React.ReactNode;
-};
-
 export type quizAction = {
 	type: string;
 	payload?: any;

@@ -1,5 +1,5 @@
-export type { quizContext } from "./userTypes";
-export type { reactChildren } from "./userTypes";
-export type { quizReducerState } from "./userTypes";
-export type { quizAction } from "./userTypes";
-export type { quizOption } from "./userTypes";
+export type { reactChildren } from "./common.types";
+export type { quizContext } from "./quiz.types";
+export type { quizReducerState } from "./quiz.types";
+export type { quizAction } from "./quiz.types";
+export type { quizOption } from "./quiz.types";
