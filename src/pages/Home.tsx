@@ -1,10 +1,12 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
 import { actionConstants } from "../reducer/actionConstants";
 export const Home = () => {
 	const navigate = useNavigate();
 	const { quizDispatch } = useQuizContext();
-	const { SET_CURRQUIZ } = actionConstants;
+	const { SET_CURRQUIZ, RESET } = actionConstants;
+	useEffect(() => quizDispatch({ type: RESET }), []);
 
 	return (
 		<div className="page-container">
@@ -28,10 +30,7 @@ export const Home = () => {
 								className="btn btn-primary-solid"
 								onClick={() => {
 									navigate("/rules");
-									quizDispatch({
-										type: SET_CURRQUIZ,
-										payload: { currQuiz: "1" },
-									});
+									sessionStorage.setItem("currQuiz", "1");
 								}}
 							>
 								<span>Take the Quiz</span>

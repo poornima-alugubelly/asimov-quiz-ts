@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
 
 export const Rules = () => {
-	const {
-		quizState: { currQuiz },
-	} = useQuizContext();
+	const currQuiz = sessionStorage.getItem("currQuiz");
 
 	return (
 		<div className="margin-l flex-center">

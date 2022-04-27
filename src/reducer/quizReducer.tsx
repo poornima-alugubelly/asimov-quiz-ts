@@ -2,14 +2,9 @@ import { quizAction, quizReducerState } from "../types";
 import { actionConstants } from "./actionConstants";
 
 export const quizReducer = (state: quizReducerState, action: quizAction) => {
-	const { SET_CURRQUIZ, SET_CURRQUE, SET_ANSWERS } = actionConstants;
+	const { SET_CURRQUE, SET_ANSWERS, RESET } = actionConstants;
 
 	switch (action.type) {
-		case SET_CURRQUIZ:
-			return {
-				...state,
-				currQuiz: action.payload.currQuiz,
-			};
 		case SET_CURRQUE: {
 			return {
 				...state,
@@ -17,12 +12,16 @@ export const quizReducer = (state: quizReducerState, action: quizAction) => {
 			};
 		}
 		case SET_ANSWERS: {
-			const { questionId, option } = action.payload;
-			const newSelectedOptions = [...state.selectedOptions];
-			newSelectedOptions[questionId] = option;
 			return {
 				...state,
-				selectedOptions: [...newSelectedOptions],
+				selectedOptions: [...action.payload.selectedOption],
+			};
+		}
+		case RESET: {
+			return {
+				currQuiz: "",
+				currQuestion: 0,
+				selectedOptions: [],
 			};
 		}
 		default:

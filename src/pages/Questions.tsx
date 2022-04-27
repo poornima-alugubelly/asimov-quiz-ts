@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
 import { actionConstants } from "../reducer/actionConstants";
+import { quizOption } from "../types";
 import { quizDB } from "../quizDB";
 
 export const Questions = () => {
@@ -12,7 +13,8 @@ export const Questions = () => {
 	const { SET_CURRQUE, SET_ANSWERS } = actionConstants;
 	const selectedQuiz = quizDB.find((quiz) => quiz.id === quizId);
 	const questions = selectedQuiz?.questions;
-	const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
+	const [selectedOption, setSelectedOption] = useState<quizOption[] | []>([]);
 	const {
 		quizState: { currQuestion },
 		quizDispatch,
@@ -29,12 +31,18 @@ export const Questions = () => {
 			type: SET_CURRQUE,
 			payload: { currQue: currQuestion + 1 },
 		});
-		setSelectedOption(null);
+	};
+	const submitHandler = () => {
+		navigate("/results");
+		quizDispatch({
+			type: SET_ANSWERS,
+			payload: { selectedOption },
+		});
 	};
 
 	return (
 		<div className="margin-l flex-center">
-			<div className="flex-column gap-m">
+			<div className="flex-column gap-m question-card">
 				<h1 className="text-center text-l txt-high-light padding-l">
 					{selectedQuiz?.title}
 				</h1>
@@ -49,21 +57,21 @@ export const Questions = () => {
 				<p className="text-s">{question}</p>
 
 				<div className="flex-column gap-s">
-					{options?.map((option, id) => (
+					{options?.map((option: quizOption, id) => (
 						<button
 							className={`btn option btn-primary-outline ${
-								selectedOption === id ? "option-selected" : ""
+								selectedOption[currQuestion]?.value === option.value
+									? "option-selected"
+									: ""
 							}`}
 							key={id}
 							onClick={() => {
-								quizDispatch({
-									type: SET_ANSWERS,
-									payload: { questionId: currQuestion, option: id },
-								});
-								setSelectedOption(id);
+								selectedOption[currQuestion] = option;
+								console.log(selectedOption);
+								setSelectedOption([...selectedOption]);
 							}}
 						>
-							{option}
+							{option.value}
 						</button>
 					))}
 				</div>
@@ -77,7 +85,6 @@ export const Questions = () => {
 								type: SET_CURRQUE,
 								payload: { currQue: currQuestion - 1 },
 							});
-							setSelectedOption(null);
 						}}
 					>
 						<i className="fas fa-chevron-left"></i> Prev
@@ -86,7 +93,7 @@ export const Questions = () => {
 						className="link-colored"
 						onClick={() => {
 							currQuestion + 1 === questions?.length
-								? navigate("/results")
+								? submitHandler()
 								: nextHandler();
 						}}
 					>
