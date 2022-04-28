@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { QuizContextProvider } from "./context/QuizContext";
+import { AuthContextProvider } from "./context/AuthContext";
 import App from "./App";
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<QuizContextProvider>
-				<App />
-			</QuizContextProvider>
+			<AuthContextProvider>
+				<QuizContextProvider>
+					<App />
+				</QuizContextProvider>
+			</AuthContextProvider>
 		</BrowserRouter>
 	</React.StrictMode>
 );

@@ -5,11 +5,6 @@ export type quizAction = {
 
 type quizDispatch = (action: quizAction) => void;
 
-export type quizContext = {
-	quizState: quizReducerState;
-	quizDispatch: quizDispatch;
-};
-
 export type quizOption = {
 	value: string;
 	isCorrect: boolean;
@@ -18,4 +13,10 @@ export type quizOption = {
 export type quizReducerState = {
 	currQuestion: number;
 	selectedOptions: quizOption[];
+	totalScore: number;
+};
+
+export type quizContext = {
+	quizState: quizReducerState;
+	quizDispatch: quizDispatch;
 };
