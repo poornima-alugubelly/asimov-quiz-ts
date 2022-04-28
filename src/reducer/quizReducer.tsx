@@ -2,7 +2,7 @@ import { quizAction, quizReducerState } from "../types";
 import { actionConstants } from "./actionConstants";
 
 export const quizReducer = (state: quizReducerState, action: quizAction) => {
-	const { SET_CURRQUE, SET_ANSWERS, RESET } = actionConstants;
+	const { SET_CURRQUE, SET_ANSWERS, RESET, SET_TOTALSCORE } = actionConstants;
 
 	switch (action.type) {
 		case SET_CURRQUE: {
@@ -15,6 +15,14 @@ export const quizReducer = (state: quizReducerState, action: quizAction) => {
 			return {
 				...state,
 				selectedOptions: [...action.payload.selectedOption],
+			};
+		}
+
+		case SET_TOTALSCORE: {
+			// console.log(action.payload.addScore);
+			return {
+				...state,
+				totalScore: state.totalScore + action.payload.addScore,
 			};
 		}
 		case RESET: {
