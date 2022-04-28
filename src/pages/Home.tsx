@@ -5,7 +5,7 @@ import { actionConstants } from "../reducer/actionConstants";
 export const Home = () => {
 	const navigate = useNavigate();
 	const { quizDispatch } = useQuizContext();
-	const { SET_CURRQUIZ, RESET } = actionConstants;
+	const { RESET } = actionConstants;
 	useEffect(() => quizDispatch({ type: RESET }), []);
 
 	return (

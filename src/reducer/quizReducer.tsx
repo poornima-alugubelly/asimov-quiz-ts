@@ -19,7 +19,7 @@ export const quizReducer = (state: quizReducerState, action: quizAction) => {
 		}
 		case RESET: {
 			return {
-				currQuiz: "",
+				...state,
 				currQuestion: 0,
 				selectedOptions: [],
 			};

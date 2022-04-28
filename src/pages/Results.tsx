@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
 import { quizDB } from "../quizDB";
 import { quizOption } from "../types";
+
 export const Result = () => {
 	const {
 		quizState: { currQuestion, selectedOptions },
@@ -13,7 +14,6 @@ export const Result = () => {
 	const [scores, setScores] = useState<number[]>(
 		Array(questions?.length).fill(0)
 	);
-	console.log(scores, Array(questions?.length).fill(0), selectedQuiz);
 	const optionState = (
 		quesId: number,
 		optionVal: string,
@@ -33,7 +33,6 @@ export const Result = () => {
 			questions!.map((_, id) => (selectedOptions[id]?.isCorrect ? 10 : 0))
 		);
 	};
-	console.log(scores);
 
 	useEffect(() => calcScore(), []);
 	const totalScored = scores.reduce((acc, curr) => (acc += curr), 0);
