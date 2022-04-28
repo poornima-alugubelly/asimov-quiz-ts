@@ -1,3 +1,15 @@
+.page-container {
+	width: 70%;
+	margin: 2rem auto;
+}
+
+.quiz-container{
+	width:50%;
+	margin: 2rem auto;
+
+}
+
+
 .card-layout {
 	display: flex;
 	flex-wrap: wrap;
@@ -34,4 +46,16 @@
 
 .results button {
 	pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+	.page-container {
+		width: 90%;
+		margin: 3rem auto;
+	}
+	.quiz-container{
+		width:70%;
+		margin: 2rem auto;
+	
+	}
 }

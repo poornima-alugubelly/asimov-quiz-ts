@@ -4,13 +4,13 @@ import { useQuizContext } from "../context/QuizContext";
 import { quizDB } from "../quizDB";
 import { actionConstants } from "../reducer/actionConstants";
 import { useNavigate } from "react-router-dom";
-import { addScoreToUser } from "../services/userServices";
+import { updateUserService } from "../services";
 import { useAuth } from "../context/AuthContext";
 
 export const Result = () => {
 	const navigate = useNavigate();
 	const {
-		quizState: { currQuestion, selectedOptions, totalScore },
+		quizState: { currQuestion, selectedOptions },
 		quizDispatch,
 	} = useQuizContext();
 	const { user } = useAuth();
@@ -21,7 +21,7 @@ export const Result = () => {
 		Array(questions?.length).fill(0)
 	);
 	const currTotal = useRef(0);
-	const { SET_TOTALSCORE } = actionConstants;
+	const { UPDATE_USER } = actionConstants;
 	const optionState = (
 		quesId: number,
 		optionVal: string,
@@ -46,10 +46,10 @@ export const Result = () => {
 
 		if (currTotal.current !== currQuizTotal) {
 			quizDispatch({
-				type: SET_TOTALSCORE,
-				payload: { addScore: currQuizTotal },
+				type: UPDATE_USER,
+				payload: { addScore: currQuizTotal, addQuiz: selectedQuiz?.title },
 			});
-			addScoreToUser(user?.uid, totalScore + currQuizTotal);
+			updateUserService(user?.uid, currQuizTotal, selectedQuiz?.title);
 		}
 		currTotal.current = currQuizTotal;
 
@@ -63,7 +63,7 @@ export const Result = () => {
 	}, []);
 
 	return currQuestion !== 0 ? (
-		<div className="margin-l flex-center results">
+		<div className="quiz-container results">
 			<div className="flex-column gap-m">
 				<div className="padding-tp-btm-s">
 					<h1 className="text-center text-l txt-high-light ">Quiz Result</h1>

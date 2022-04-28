@@ -5,7 +5,7 @@ export const Rules = () => {
 	const currQuiz = sessionStorage.getItem("currQuiz");
 
 	return (
-		<div className="margin-l flex-center">
+		<div className="quiz-container">
 			<div className="flex-column gap-m">
 				<h1 className="text-center text-l txt-high-light">Category Name</h1>
 

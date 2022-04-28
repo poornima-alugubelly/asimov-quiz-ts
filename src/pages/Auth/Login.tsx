@@ -31,7 +31,6 @@ export const Login = () => {
 	if (user) {
 		setAuthLoading(true);
 		setTimeout(() => {
-			toast.success("Successfully logged in");
 			setAuthLoading(false);
 			navigate(from, { replace: true });
 		}, 1000);
@@ -104,7 +103,7 @@ export const Login = () => {
 					<button
 						className="btn btn-primary-outline"
 						onClick={(e) =>
-							loginHandler(e, "adarshbalak@gmail.com", "adarshBalaki123")
+							loginHandler(e, "adarshbalika@gmail.com", "adarshBalika123")
 						}
 					>
 						Login with test credentials

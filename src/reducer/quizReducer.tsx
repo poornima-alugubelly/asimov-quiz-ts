@@ -2,7 +2,7 @@ import { quizAction, quizReducerState } from "../types";
 import { actionConstants } from "./actionConstants";
 
 export const quizReducer = (state: quizReducerState, action: quizAction) => {
-	const { SET_CURRQUE, SET_ANSWERS, RESET, SET_TOTALSCORE } = actionConstants;
+	const { SET_CURRQUE, SET_ANSWERS, RESET, UPDATE_USER } = actionConstants;
 
 	switch (action.type) {
 		case SET_CURRQUE: {
@@ -18,11 +18,17 @@ export const quizReducer = (state: quizReducerState, action: quizAction) => {
 			};
 		}
 
-		case SET_TOTALSCORE: {
-			// console.log(action.payload.addScore);
+		case UPDATE_USER: {
 			return {
 				...state,
 				totalScore: state.totalScore + action.payload.addScore,
+				quizzesAttempted: [
+					...state.quizzesAttempted,
+					{
+						quizCategory: action.payload.addQuiz,
+						quizScore: action.payload.addScore,
+					},
+				],
 			};
 		}
 		case RESET: {

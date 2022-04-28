@@ -41,7 +41,7 @@ export const Questions = () => {
 	};
 
 	return (
-		<div className="margin-l flex-center">
+		<div className="quiz-container">
 			<div className="flex-column gap-m question-card">
 				<h1 className="text-center text-l txt-high-light padding-l">
 					{selectedQuiz?.title}

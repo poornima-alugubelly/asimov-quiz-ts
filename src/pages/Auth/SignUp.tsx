@@ -1,8 +1,9 @@
 import "./Auth.css";
-import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
+import { auth } from "../../firebase-config";
+import { updateProfile, User } from "firebase/auth";
 import { db } from "../../firebase-config";
 import { signupService } from "../../services";
 import { useAuth } from "../../context/AuthContext";
@@ -31,6 +32,7 @@ export const Signup = () => {
 
 		try {
 			const res = await signupService(email, password);
+			const currUser: any = auth?.currentUser;
 			await addDoc(collection(db, "users"), {
 				uid: res.user.uid,
 				firstName,
@@ -40,14 +42,18 @@ export const Signup = () => {
 				quizzesAttempted: [],
 				totalScore: 0,
 			});
+
+			await updateProfile(currUser, {
+				displayName: `${firstName} ${lastName}`,
+			});
 		} catch (err: any) {
 			setError(err.message);
 		}
 	};
+
 	if (user) {
 		setAuthLoading(true);
 		setTimeout(() => {
-			toast.success("Successfully signed up");
 			setAuthLoading(false);
 			navigate("/");
 		}, 1000);

@@ -10,13 +10,24 @@ export type quizOption = {
 	isCorrect: boolean;
 };
 
+export type attemptedQuizzes = {
+	quizCategory: string;
+	quizScore: number;
+};
+
 export type quizReducerState = {
 	currQuestion: number;
 	selectedOptions: quizOption[];
 	totalScore: number;
+	quizzesAttempted: attemptedQuizzes[];
 };
 
 export type quizContext = {
 	quizState: quizReducerState;
 	quizDispatch: quizDispatch;
+};
+
+export type leaderBoard = {
+	userName: string;
+	userScore: number;
 };
