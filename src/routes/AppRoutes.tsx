@@ -3,7 +3,7 @@ import { Login } from "../pages/Auth/Login";
 import { Signup } from "../pages/Auth/SignUp";
 import { Home } from "../pages/Home";
 import { Questions } from "../pages/Questions";
-import { Result } from "../pages/Results";
+import { Result } from "../pages/Results/Results";
 import { Rules } from "../pages/Rules";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { LeaderBoard } from "../pages/LeaderBoard/LeaderBoard";

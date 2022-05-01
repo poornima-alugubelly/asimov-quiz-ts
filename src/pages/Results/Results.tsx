@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
-import { useQuizContext } from "../context/QuizContext";
-import { quizDB } from "../quizDB";
-import { actionConstants } from "../reducer/actionConstants";
+import { useQuizContext } from "../../context/QuizContext";
+import { quizDB } from "../../quizDB";
+import { actionConstants } from "../../reducer/actionConstants";
 import { useNavigate } from "react-router-dom";
-import { updateUserService } from "../services";
-import { useAuth } from "../context/AuthContext";
+import { updateUserService } from "../../services";
+import { useAuth } from "../../context/AuthContext";
+import "./Results.css";
 
 export const Result = () => {
 	const navigate = useNavigate();
@@ -44,7 +45,10 @@ export const Result = () => {
 				currQuizTotal += 10;
 			}
 
-		if (currTotal.current !== currQuizTotal || (currTotal.current === 0 && currQuizTotal === 0)  ) {
+		if (
+			currTotal.current !== currQuizTotal ||
+			(currTotal.current === 0 && currQuizTotal === 0)
+		) {
 			const quizPass =
 				currQuizTotal >= questions!.length * 10 * (70 / 100) ? true : false;
 			quizDispatch({

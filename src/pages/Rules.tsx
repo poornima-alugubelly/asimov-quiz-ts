@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
-import { doc } from "firebase/firestore";
-import { db } from "../firebase-config";
 import { getQuizData } from "../services/quizServices";
 import { actionConstants } from "../reducer/actionConstants";
 import { useEffect } from "react";
@@ -10,19 +8,19 @@ export const Rules = () => {
 	const currQuiz: string | null = sessionStorage.getItem("currQuiz");
 	const { quizDispatch } = useQuizContext();
 	const { START_QUIZ } = actionConstants;
-	useEffect(() => {
-		(async () => {
-			const quizData = await getQuizData("abc");
-			console.log(quizData);
-		})();
-		quizDispatch({ type: START_QUIZ });
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const quizData = await getQuizData("abc");
+	// 		console.log(quizData);
+	// 	})();
+	// 	quizDispatch({ type: START_QUIZ });
+	// }, []);
 	const rules = [
 		`Each right answer scores 10 Points`,
 		`Each question has only one
-right answer`,
+		right answer`,
 		`Score more than 70% to win
-the quiz`,
+		the quiz`,
 	];
 	return (
 		<div className="rules-container ">

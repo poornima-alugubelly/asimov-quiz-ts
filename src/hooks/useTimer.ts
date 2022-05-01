@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 export const useTimer = () => {
-	const [timerSec, setTimerSec] = useState(15);
-	const [timerMin, setTimerMin] = useState(0);
+	const [timerSec, setTimerSec] = useState(30);
+	const [timerMin, setTimerMin] = useState(2);
 	const sec = useRef(15);
 	const min = useRef(0);
 	useEffect(() => {

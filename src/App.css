@@ -1,3 +1,26 @@
+
+
+.light-theme{
+	--primary-color: #0b6875;
+	--bg-color: #ededed;
+	--secondary-color: #181919;
+	--ternary-color: rgb(251 254 255);
+	--shadow-color: rgb(176 196 208 / 40%);
+	--primary-dark: rgb(71 130 123);
+	--ternary-dark: rgb(201 214 213);
+	--dark-blue: rgb(0, 0, 0, 0.5);
+	--black: rgb(219 230 230);
+	--scroll-color: #07464e;
+}
+.App{
+	background-color: var(--bg-color);
+	color: var(--secondary-color);
+}
+
+.content{
+	min-height: 80vh;
+}
+
 .page-container {
 	width: 70%;
 	margin: 2rem auto;
@@ -7,7 +30,6 @@
 	max-width: 20rem;
 	margin: 3rem auto;
 }
-
 
 .card-layout {
 	display: flex;
@@ -24,27 +46,6 @@
 
 .question-card {
 	max-width: 40rem;
-}
-
-.option-selected {
-	background-color: var(--primary-color);
-	color: var(--ternary-color);
-}
-
-.option-wrong {
-	background-color: var(--red);
-	color: var(--secondary-color);
-	border: none;
-}
-
-.option-correct {
-	background-color: var(--green);
-	color: var(--secondary-color);
-	border: none;
-}
-
-.results button {
-	pointer-events: none;
 }
 
 @media (max-width: 1024px) {
