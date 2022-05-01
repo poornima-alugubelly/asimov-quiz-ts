@@ -8,13 +8,13 @@ export const Rules = () => {
 	const currQuiz: string | null = sessionStorage.getItem("currQuiz");
 	const { quizDispatch } = useQuizContext();
 	const { START_QUIZ } = actionConstants;
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const quizData = await getQuizData("abc");
-	// 		console.log(quizData);
-	// 	})();
-	// 	quizDispatch({ type: START_QUIZ });
-	// }, []);
+	useEffect(() => {
+		(async () => {
+			const quizData = await getQuizData("abc");
+			console.log(quizData);
+		})();
+		quizDispatch({ type: START_QUIZ });
+	}, []);
 	const rules = [
 		`Each right answer scores 10 Points`,
 		`Each question has only one
@@ -23,7 +23,7 @@ export const Rules = () => {
 		the quiz`,
 	];
 	return (
-		<div className="rules-container ">
+		<div className="rules-container padding-s">
 			<div className="flex-column gap-m ">
 				<h1 className="text-center text-l txt-high-light">Category Name</h1>
 				{rules.map((rule, id) => (
