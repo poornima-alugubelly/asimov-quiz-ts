@@ -6,8 +6,13 @@ export const Home = () => {
 	const navigate = useNavigate();
 	const { quizDispatch } = useQuizContext();
 	const { RESET } = actionConstants;
+
 	useEffect(() => quizDispatch({ type: RESET }), []);
 
+	const clickHandler = (categoryId: string) => {
+		navigate("/rules");
+		sessionStorage.setItem("currQuiz", categoryId);
+	};
 	return (
 		<div className="page-container">
 			<h1 className="text-center text-l txt-high-light padding-l">ASIMOV-Q</h1>
@@ -27,11 +32,8 @@ export const Home = () => {
 						<span>From Ghost in the shell to Tokyo revengers</span>
 						<div className="card-footer">
 							<button
-								className="btn btn-primary-solid"
-								onClick={() => {
-									navigate("/rules");
-									sessionStorage.setItem("currQuiz", "1");
-								}}
+								className="btn btn-primary-solid flex-center gap-xs"
+								onClick={() => clickHandler("0")}
 							>
 								<span>Take the Quiz</span>
 								<i className="fa-fw fas fa-pencil-ruler"></i>
@@ -57,10 +59,13 @@ export const Home = () => {
 								Asimov, Herbert , Wells and Ursala are all familiar names
 							</span>
 							<div className="card-footer">
-								<a href="./public/rules.html" className="btn btn-primary-solid">
+								<button
+									className="btn btn-primary-solid flex-center gap-xs"
+									onClick={() => clickHandler("1")}
+								>
 									<span>Take the Quiz</span>
 									<i className="fa-fw fas fa-book"></i>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -81,10 +86,13 @@ export const Home = () => {
 
 							<span>Red Pill or Blue Pill? Dream or reality?</span>
 							<div className="card-footer">
-								<a href="./public/rules.html" className="btn btn-primary-solid">
+								<button
+									className="btn btn-primary-solid flex-center gap-xs"
+									onClick={() => clickHandler("2")}
+								>
 									<span>Take the Quiz</span>
 									<i className="fa-fw fas fa-video"></i>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -104,10 +112,13 @@ export const Home = () => {
 
 							<span>Have you watched enough? Let's find out</span>
 							<div className="card-footer">
-								<a href="./public/rules.html" className="btn btn-primary-solid">
+								<button
+									className="btn btn-primary-solid flex-center gap-xs"
+									onClick={() => clickHandler("3")}
+								>
 									<span>Take the Quiz</span>
 									<i className="fa-fw fas fa-tv"></i>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>

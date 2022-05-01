@@ -10,7 +10,7 @@ import { useAuth } from "../context/AuthContext";
 export const Result = () => {
 	const navigate = useNavigate();
 	const {
-		quizState: { currQuestion, selectedOptions },
+		quizState: { selectedOptions, quizStarted },
 		quizDispatch,
 	} = useQuizContext();
 	const { user } = useAuth();
@@ -44,10 +44,17 @@ export const Result = () => {
 				currQuizTotal += 10;
 			}
 
-		if (currTotal.current !== currQuizTotal) {
+		if (currTotal.current !== currQuizTotal || (currTotal.current === 0 && currQuizTotal === 0)  ) {
+			const quizPass =
+				currQuizTotal >= questions!.length * 10 * (70 / 100) ? true : false;
 			quizDispatch({
 				type: UPDATE_USER,
-				payload: { addScore: currQuizTotal, addQuiz: selectedQuiz?.title },
+				payload: {
+					addScore: currQuizTotal,
+					addQuiz: selectedQuiz?.title,
+					quizPass,
+					quizId: selectedQuiz?.id,
+				},
 			});
 			updateUserService(user?.uid, currQuizTotal, selectedQuiz?.title);
 		}
@@ -62,14 +69,19 @@ export const Result = () => {
 		calcScore();
 	}, []);
 
-	return currQuestion !== 0 ? (
-		<div className="quiz-container results">
+	return quizStarted ? (
+		<div className="flex-center padding-s">
 			<div className="flex-column gap-m">
-				<div className="padding-tp-btm-s">
+				<div className="padding-tp-btm-s flex-column gap-xs">
 					<h1 className="text-center text-l txt-high-light ">Quiz Result</h1>
 					<h3 className="text-center text-s  ">{`You scored : ${
 						currTotal.current
 					}/${questions!.length * 10}`}</h3>
+					<p className="text-center text-xs">
+						{currTotal.current >= questions!.length * 10 * (70 / 100)
+							? "🎉 Yayy you passed the quiz!"
+							: "😔 Better luck next time"}
+					</p>
 				</div>
 
 				<section className="flex-column gap-m question-card">

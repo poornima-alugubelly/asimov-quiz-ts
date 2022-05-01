@@ -1,10 +1,9 @@
 import "./Auth.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { auth } from "../../firebase-config";
-import { updateProfile, User } from "firebase/auth";
 import { db } from "../../firebase-config";
+import { auth } from "../../firebase-config";
 import { signupService } from "../../services";
 import { useAuth } from "../../context/AuthContext";
 import { usePwdToggler } from "../../hooks/usePwdToggler";
@@ -17,9 +16,11 @@ export const Signup = () => {
 		firstName: "",
 		lastName: "",
 	});
-	const { authLoading, setAuthLoading, user } = useAuth();
+	const { authLoading, setAuthLoading, user, setUser } = useAuth();
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
+	const location: any = useLocation();
+	const from = location?.state?.from.pathname || "/";
 	const [pwdToggle, pwdToggler] = usePwdToggler();
 	const signUpHandler = async (
 		e: FormEvent,
@@ -31,21 +32,25 @@ export const Signup = () => {
 		e.preventDefault();
 
 		try {
-			const res = await signupService(email, password);
+			const response = await signupService(email, password);
 			const currUser: any = auth?.currentUser;
-			await addDoc(collection(db, "users"), {
-				uid: res.user.uid,
-				firstName,
-				lastName,
-				authProvider: "local",
-				email,
-				quizzesAttempted: [],
-				totalScore: 0,
-			});
+			console.log(response, currUser);
+			if (response) {
+				const userInit = {
+					uid: response.user.uid,
+					firstName,
+					lastName,
+					authProvider: "local",
+					email,
+					quizzesAttempted: [],
+					totalScore: 0,
+				};
+				localStorage.setItem("user", JSON.stringify(userInit));
+				setUser(userInit);
+				navigate(from, { replace: true });
 
-			await updateProfile(currUser, {
-				displayName: `${firstName} ${lastName}`,
-			});
+				await addDoc(collection(db, "users"), userInit);
+			}
 		} catch (err: any) {
 			setError(err.message);
 		}

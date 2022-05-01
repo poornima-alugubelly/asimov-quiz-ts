@@ -11,30 +11,42 @@ export const UserProgress = () => {
 	useEffect(() => {
 		(async () => {
 			setAuthLoading(true);
+			console.log(user?.uid);
 			const response = await getProgressService(user?.uid);
+			console.log(response);
 			setAuthLoading(false);
 
 			setProgress(response);
 		})();
 	}, []);
-
+	console.log(progress);
 	return authLoading ? (
 		<Loader />
 	) : (
 		<div className="padding-s ">
 			<h3>Quiz Attempts</h3>
-			<div className="flex-space-between padding-tp-btm-xs">
-				<p>Quiz Category</p>
-				<p>Your Score</p>
-			</div>
-			{progress?.map((quizAttempt) => (
-				<div className="">
-					<div className="flex-space-between padding-xs progress-item ">
-						<p>{quizAttempt.quizCategory}</p>
-						<p>{quizAttempt.quizScore}</p>
+
+			{progress?.length === 0 ? (
+				<span>No quizzes attempted till now :(</span>
+			) : (
+				<div>
+					<div className="flex-space-between padding-tp-btm-xs">
+						<p>Quiz Category</p>
+						<p>Your Score</p>
 					</div>
+					{progress?.map((quizAttempt) => (
+						<div className="">
+							<div className="flex-space-between padding-xs progress-item ">
+								<p>{quizAttempt.quizCategory}</p>
+								<div>
+									<p>{quizAttempt.quizScore}</p>
+									<span>{quizAttempt.quizPass ? "PASS" : "FAIL"}</span>
+								</div>
+							</div>
+						</div>
+					))}
 				</div>
-			))}
+			)}
 		</div>
 	);
 };

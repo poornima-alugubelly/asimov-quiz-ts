@@ -2,6 +2,8 @@ import "./Auth.css";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase-config";
 import { loginService } from "../../services";
 import { useAuth } from "../../context/AuthContext";
 import { usePwdToggler } from "../../hooks/usePwdToggler";
@@ -11,7 +13,7 @@ export const Login = () => {
 	const [formVal, setFormVal] = useState({ email: "", password: "" });
 	const [pwdToggle, pwdToggler] = usePwdToggler();
 	const [error, setError] = useState("");
-	const { authLoading, setAuthLoading, user } = useAuth();
+	const { authLoading, setAuthLoading, user, setUser } = useAuth();
 	const navigate = useNavigate();
 	const location: any = useLocation();
 	const from = location?.state?.from.pathname || "/";
@@ -23,7 +25,24 @@ export const Login = () => {
 		setFormVal({ email, password });
 		e.preventDefault();
 		try {
-			const res = await loginService(email, password);
+			const response = await loginService(email, password);
+			if (response) {
+				const resUser: any = response?.user;
+				if (resUser) {
+					const q = query(
+						collection(db, "users"),
+						where("uid", "==", resUser.uid)
+					);
+					const querySnapshot1 = await getDocs(q);
+					querySnapshot1.forEach((doc) => {
+						const userObj: any = doc.data();
+						setUser(userObj);
+						localStorage.setItem("user", JSON.stringify(userObj));
+					});
+				}
+
+				navigate(from, { replace: true });
+			}
 		} catch (err: any) {
 			setError(err.message);
 		}
@@ -103,7 +122,7 @@ export const Login = () => {
 					<button
 						className="btn btn-primary-outline"
 						onClick={(e) =>
-							loginHandler(e, "adarshbalika@gmail.com", "adarshBalika123")
+							loginHandler(e, "adarshbalika@gmail.com", "adarshbalika123")
 						}
 					>
 						Login with test credentials

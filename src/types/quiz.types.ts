@@ -13,6 +13,8 @@ export type quizOption = {
 export type attemptedQuizzes = {
 	quizCategory: string;
 	quizScore: number;
+	quizPass: boolean;
+	quizId: string;
 };
 
 export type quizReducerState = {
@@ -20,6 +22,7 @@ export type quizReducerState = {
 	selectedOptions: quizOption[];
 	totalScore: number;
 	quizzesAttempted: attemptedQuizzes[];
+	quizStarted: boolean;
 };
 
 export type quizContext = {

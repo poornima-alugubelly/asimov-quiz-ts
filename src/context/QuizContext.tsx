@@ -9,6 +9,7 @@ const initialState = {
 	selectedOptions: [],
 	totalScore: 0,
 	quizzesAttempted: [],
+	quizStarted: false,
 };
 const QuizContextProvider = ({ children }: reactChildren) => {
 	const [quizState, quizDispatch] = useReducer(quizReducer, initialState);
