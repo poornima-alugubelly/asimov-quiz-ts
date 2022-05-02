@@ -76,7 +76,6 @@ export const Questions = () => {
 							key={id}
 							onClick={() => {
 								selectedOption[currQuestion] = option;
-								console.log(selectedOption);
 								setSelectedOption([...selectedOption]);
 							}}
 						>

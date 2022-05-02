@@ -34,7 +34,6 @@ export const Signup = () => {
 		try {
 			const response = await signupService(email, password);
 			const currUser: any = auth?.currentUser;
-			console.log(response, currUser);
 			if (response) {
 				const userInit = {
 					uid: response.user.uid,

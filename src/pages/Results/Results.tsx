@@ -9,7 +9,6 @@ import { useAuth } from "../../context/AuthContext";
 import "./Results.css";
 
 export const Result = () => {
-	console.log("results");
 	const navigate = useNavigate();
 	const {
 		quizState: { selectedOptions, quizStarted },
@@ -73,7 +72,7 @@ export const Result = () => {
 	useEffect(() => {
 		calcScore();
 	}, []);
-	console.log(quizStarted);
+
 	return quizStarted ? (
 		<div className="flex-center padding-s">
 			<div className="flex-column gap-m">

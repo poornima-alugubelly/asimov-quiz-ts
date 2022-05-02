@@ -11,7 +11,7 @@ export const LeaderBoard = () => {
 			setLeaderBoard(response);
 		})();
 	}, []);
-	console.log(leaderBoard);
+
 	return (
 		<div className="page-container">
 			<h2 className="padding-l text-center">Leader Board</h2>

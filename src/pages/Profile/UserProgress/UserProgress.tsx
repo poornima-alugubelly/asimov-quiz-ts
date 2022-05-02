@@ -11,15 +11,13 @@ export const UserProgress = () => {
 	useEffect(() => {
 		(async () => {
 			setAuthLoading(true);
-			console.log(user?.uid);
 			const response = await getProgressService(user?.uid);
-			console.log(response);
 			setAuthLoading(false);
 
 			setProgress(response);
 		})();
 	}, []);
-	console.log(progress);
+
 	return authLoading ? (
 		<Loader />
 	) : (

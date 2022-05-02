@@ -11,7 +11,6 @@ export const Rules = () => {
 	useEffect(() => {
 		(async () => {
 			const quizData = await getQuizData("abc");
-			console.log(quizData);
 		})();
 		quizDispatch({ type: START_QUIZ });
 	}, []);
