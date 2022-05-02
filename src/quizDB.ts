@@ -51,58 +51,7 @@ export const quizDB = [
 		],
 	},
 	{
-		id: "2",
-		title: "Movies",
-		questions: [
-			{
-				question: `How many movies are there in the Matrix Franchise?`,
-				options: [
-					{ value: "3", isCorrect: false },
-					{ value: "4", isCorrect: false },
-					{ value: "4 but we don't talk about the last one", isCorrect: true },
-					{ value: "2", isCorrect: false },
-				],
-			},
-			{
-				question: `How much time passes on Earth if two hours passes in Miller's planet from the movie Interstellar?`,
-				options: [
-					{ value: "7 years", isCorrect: false },
-					{ value: "12 years", isCorrect: false },
-					{ value: "6 years", isCorrect: false },
-					{ value: "14 years", isCorrect: true },
-				],
-			},
-			{
-				question: `How long was Mark Watney on Mars in The Martian?`,
-				options: [
-					{ value: "16 months", isCorrect: false },
-					{ value: "17 months", isCorrect: false },
-					{ value: "18 months", isCorrect: true },
-					{ value: "19 Months", isCorrect: false },
-				],
-			},
-			{
-				question: `When was the first Star Wars movie released?`,
-				options: [
-					{ value: "1975", isCorrect: false },
-					{ value: "1976", isCorrect: false },
-					{ value: "1977", isCorrect: true },
-					{ value: "1978", isCorrect: false },
-				],
-			},
-			{
-				question: `What is Baby Yoda's name?`,
-				options: [
-					{ value: "Mayu", isCorrect: false },
-					{ value: "Grogu", isCorrect: true },
-					{ value: "Baby Yoda is Baby Yoda", isCorrect: false },
-					{ value: "Emi", isCorrect: false },
-				],
-			},
-		],
-	},
-	{
-		id: "1",
+		
 		title: "Books",
 		questions: [
 			{
@@ -153,7 +102,59 @@ export const quizDB = [
 		],
 	},
 	{
-		id: "3",
+		
+		title: "Movies",
+		questions: [
+			{
+				question: `How many movies are there in the Matrix Franchise?`,
+				options: [
+					{ value: "3", isCorrect: false },
+					{ value: "4", isCorrect: false },
+					{ value: "4 but we don't talk about the last one", isCorrect: true },
+					{ value: "2", isCorrect: false },
+				],
+			},
+			{
+				question: `How much time passes on Earth if two hours passes in Miller's planet from the movie Interstellar?`,
+				options: [
+					{ value: "7 years", isCorrect: false },
+					{ value: "12 years", isCorrect: false },
+					{ value: "6 years", isCorrect: false },
+					{ value: "14 years", isCorrect: true },
+				],
+			},
+			{
+				question: `How long was Mark Watney on Mars in The Martian?`,
+				options: [
+					{ value: "16 months", isCorrect: false },
+					{ value: "17 months", isCorrect: false },
+					{ value: "18 months", isCorrect: true },
+					{ value: "19 Months", isCorrect: false },
+				],
+			},
+			{
+				question: `When was the first Star Wars movie released?`,
+				options: [
+					{ value: "1975", isCorrect: false },
+					{ value: "1976", isCorrect: false },
+					{ value: "1977", isCorrect: true },
+					{ value: "1978", isCorrect: false },
+				],
+			},
+			{
+				question: `What is Baby Yoda's name?`,
+				options: [
+					{ value: "Mayu", isCorrect: false },
+					{ value: "Grogu", isCorrect: true },
+					{ value: "Baby Yoda is Baby Yoda", isCorrect: false },
+					{ value: "Emi", isCorrect: false },
+				],
+			},
+		],
+	},
+	
+	{
+		
 		title: "TV series",
 		questions: [
 			{
