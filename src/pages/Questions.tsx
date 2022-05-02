@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useQuizContext } from "../context/QuizContext";
 import { actionConstants } from "../reducer/actionConstants";
 import { quizOption } from "../types";
 import { quizDB } from "../quizDB";
+import { useTimer } from "../hooks/useTimer";
 
 export const Questions = () => {
 	const navigate = useNavigate();
@@ -13,14 +14,15 @@ export const Questions = () => {
 	const { SET_CURRQUE, SET_ANSWERS } = actionConstants;
 	const selectedQuiz = quizDB.find((quiz) => quiz.id === quizId);
 	const questions = selectedQuiz?.questions;
-
+	const { timerSec, timerMin, sec } = useTimer();
+	let question;
+	let options;
 	const [selectedOption, setSelectedOption] = useState<quizOption[] | []>([]);
 	const {
 		quizState: { currQuestion },
 		quizDispatch,
 	} = useQuizContext();
-	let question;
-	let options;
+
 	if (questions) {
 		question = questions[currQuestion]?.question;
 		options = questions[currQuestion]?.options;
@@ -33,15 +35,20 @@ export const Questions = () => {
 		});
 	};
 	const submitHandler = () => {
-		navigate("/results");
 		quizDispatch({
 			type: SET_ANSWERS,
 			payload: { selectedOption },
 		});
+		navigate("/results");
 	};
+	if (timerMin === 0 && sec.current === 0) {
+		submitHandler();
+	}
+	const formatNumber = (num: number): string | number =>
+		num < 10 ? "0" + num : num;
 
 	return (
-		<div className="margin-l flex-center">
+		<div className="flex-center padding-s">
 			<div className="flex-column gap-m question-card">
 				<h1 className="text-center text-l txt-high-light padding-l">
 					{selectedQuiz?.title}
@@ -51,7 +58,9 @@ export const Questions = () => {
 					<span>
 						Question : {currQuestion + 1}/{questions?.length}
 					</span>
-					<span>Score: 0</span>
+					<span className={timerSec <= 10 && timerMin === 0 ? "text-red" : ""}>
+						{formatNumber(timerMin)} : {formatNumber(timerSec)}
+					</span>
 				</div>
 
 				<p className="text-s">{question}</p>
@@ -67,7 +76,6 @@ export const Questions = () => {
 							key={id}
 							onClick={() => {
 								selectedOption[currQuestion] = option;
-								console.log(selectedOption);
 								setSelectedOption([...selectedOption]);
 							}}
 						>
@@ -77,7 +85,7 @@ export const Questions = () => {
 				</div>
 				<div className="flex-space-between ">
 					<span
-						className={`link-colored pointer ${
+						className={`link-colored pointer flex-center gap-xs ${
 							currQuestion === 0 ? "btn-disabled" : ""
 						}`}
 						onClick={() => {
@@ -90,7 +98,7 @@ export const Questions = () => {
 						<i className="fas fa-chevron-left"></i> Prev
 					</span>
 					<span
-						className="link-colored pointer"
+						className="link-colored pointer flex-center gap-xs"
 						onClick={() => {
 							currQuestion + 1 === questions?.length
 								? submitHandler()

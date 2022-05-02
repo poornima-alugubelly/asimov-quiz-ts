@@ -1,0 +1,28 @@
+.profile-container {
+	display: flex;
+	border: 1px solid var(--ternary-dark);
+	margin: 0 3rem;
+	width:23rem;
+	flex-direction: column;
+}
+
+.profile-list{
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-container .flex-column{
+	border-bottom: 1px solid var(--ternary-dark);
+
+}
+
+.border-bottom{
+	border-bottom: 1px solid var(--primary-color);
+}
+
+.profile-details {
+	min-width: 15rem;
+}
+.progress-item{
+    background-color: var(--ternary-color);
+}

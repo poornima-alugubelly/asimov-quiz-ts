@@ -4,7 +4,13 @@ import { quizReducer } from "../reducer/quizReducer";
 
 const QuizContext = createContext({} as quizContext);
 const useQuizContext = () => useContext(QuizContext);
-const initialState = { currQuestion: 0, selectedOptions: [], totalScore: 0 };
+const initialState = {
+	currQuestion: 0,
+	selectedOptions: [],
+	totalScore: 0,
+	quizzesAttempted: [],
+	quizStarted: false,
+};
 const QuizContextProvider = ({ children }: reactChildren) => {
 	const [quizState, quizDispatch] = useReducer(quizReducer, initialState);
 	return (

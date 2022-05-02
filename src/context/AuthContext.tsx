@@ -1,6 +1,3 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase-config";
-import { User as FirebaseUser } from "firebase/auth";
 import { reactChildren, authContextType } from "../types";
 import { createContext, useContext, useState } from "react";
 
@@ -8,11 +5,11 @@ const AuthContext = createContext({} as authContextType);
 
 const useAuth = () => useContext(AuthContext);
 const AuthContextProvider = ({ children }: reactChildren) => {
-	const [user, setUser] = useState<FirebaseUser | null>(null);
+	const localStorageUser = localStorage.getItem("user");
+	const [user, setUser] = useState(
+		localStorageUser ? JSON.parse(localStorageUser) : null
+	);
 	const [authLoading, setAuthLoading] = useState(false);
-	onAuthStateChanged(auth, (currentUser) => {
-		setUser(currentUser);
-	});
 	return (
 		<AuthContext.Provider
 			value={{ user, setUser, authLoading, setAuthLoading }}
