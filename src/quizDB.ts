@@ -84,8 +84,8 @@ export const quizDB = [
 			{
 				question: `Who is author of the famour series "The Three-Body Problem"?`,
 				options: [
-					{ value: "Liu Cixin", isCorrect: false },
-					{ value: "Ursala Le Guin", isCorrect: true },
+					{ value: "Liu Cixin", isCorrect: true},
+					{ value: "Ursala Le Guin", isCorrect: false },
 					{ value: "Issac Asimov", isCorrect: false },
 					{ value: "H.G. Wells", isCorrect: false },
 				],
@@ -93,8 +93,8 @@ export const quizDB = [
 			{
 				question: `What is the answer to life , the universe and everything?`,
 				options: [
-					{ value: "42", isCorrect: false },
-					{ value: "A towel", isCorrect: true },
+					{ value: "42", isCorrect: true },
+					{ value: "A towel", isCorrect: false },
 					{ value: "24", isCorrect: false },
 					{ value: "A nice towel", isCorrect: false },
 				],
@@ -137,8 +137,8 @@ export const quizDB = [
 				options: [
 					{ value: "1975", isCorrect: false },
 					{ value: "1976", isCorrect: false },
-					{ value: "1977", isCorrect: true },
-					{ value: "1978", isCorrect: false },
+					{ value: "1977", isCorrect: false },
+					{ value: "1978", isCorrect: true },
 				],
 			},
 			{
