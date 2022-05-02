@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 export const useTimer = () => {
 	const [timerSec, setTimerSec] = useState(30);
-	const [timerMin, setTimerMin] = useState(2);
-	const sec = useRef(15);
-	const min = useRef(0);
+	const [timerMin, setTimerMin] = useState(1);
+	const sec = useRef(30);
+	const min = useRef(1);
 	useEffect(() => {
 		const timerId = setInterval(() => {
 			sec.current -= 1;

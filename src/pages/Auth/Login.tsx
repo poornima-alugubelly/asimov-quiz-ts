@@ -33,9 +33,10 @@ export const Login = () => {
 						collection(db, "users"),
 						where("uid", "==", resUser.uid)
 					);
-					const querySnapshot1 = await getDocs(q);
-					querySnapshot1.forEach((doc) => {
+					const querySnapshot = await getDocs(q);
+					querySnapshot.forEach((doc) => {
 						const userObj: any = doc.data();
+						console.log(userObj);
 						setUser(userObj);
 						localStorage.setItem("user", JSON.stringify(userObj));
 					});

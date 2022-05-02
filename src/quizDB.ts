@@ -187,21 +187,13 @@ export const quizDB = [
 					{ value: "Gadgets", isCorrect: false },
 				],
 			},
+
 			{
 				question: `Which game is the show Arcane based on?`,
 				options: [
 					{ value: "DOTA", isCorrect: false },
 					{ value: "Legend of Zelda", isCorrect: false },
-					{ value: "Genshin Impact", isCorrect: true },
-					{ value: "League of Legends", isCorrect: true },
-				],
-			},
-			{
-				question: `Which game is the show Arcane based on?`,
-				options: [
-					{ value: "DOTA", isCorrect: false },
-					{ value: "Legend of Zelda", isCorrect: false },
-					{ value: "Genshin Impact", isCorrect: true },
+					{ value: "Genshin Impact", isCorrect: false },
 					{ value: "League of Legends", isCorrect: true },
 				],
 			},
