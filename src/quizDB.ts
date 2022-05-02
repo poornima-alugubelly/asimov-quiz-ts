@@ -51,7 +51,7 @@ export const quizDB = [
 		],
 	},
 	{
-		
+		id: "1",
 		title: "Books",
 		questions: [
 			{
@@ -84,7 +84,7 @@ export const quizDB = [
 			{
 				question: `Who is author of the famour series "The Three-Body Problem"?`,
 				options: [
-					{ value: "Liu Cixin", isCorrect: true},
+					{ value: "Liu Cixin", isCorrect: true },
 					{ value: "Ursala Le Guin", isCorrect: false },
 					{ value: "Issac Asimov", isCorrect: false },
 					{ value: "H.G. Wells", isCorrect: false },
@@ -102,7 +102,7 @@ export const quizDB = [
 		],
 	},
 	{
-		
+		id: "2",
 		title: "Movies",
 		questions: [
 			{
@@ -152,9 +152,9 @@ export const quizDB = [
 			},
 		],
 	},
-	
+
 	{
-		
+		id: "3",
 		title: "TV series",
 		questions: [
 			{
