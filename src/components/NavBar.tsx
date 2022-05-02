@@ -50,8 +50,6 @@ export const NavBar = () => {
 					) : (
 						<Link to="/login" className="flex-column flex-align-center gap-xs">
 							<i className="fas fa-user btn-icon"></i>
-
-							<span className="text-xxs pointer">Login </span>
 						</Link>
 					)}
 				</ul>
