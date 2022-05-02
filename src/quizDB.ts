@@ -51,7 +51,7 @@ export const quizDB = [
 		],
 	},
 	{
-		id: "1",
+		id: "2",
 		title: "Movies",
 		questions: [
 			{
@@ -102,7 +102,7 @@ export const quizDB = [
 		],
 	},
 	{
-		id: "2",
+		id: "1",
 		title: "Books",
 		questions: [
 			{
