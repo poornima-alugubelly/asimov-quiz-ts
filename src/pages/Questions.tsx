@@ -41,7 +41,8 @@ export const Questions = () => {
 		});
 		navigate("/results");
 	};
-	if (timerMin === 0 && sec.current === 0) {
+
+	if (timerMin === 0 && timerSec === 0) {
 		submitHandler();
 	}
 	const formatNumber = (num: number): string | number =>

@@ -8,12 +8,14 @@ export const useTimer = () => {
 	useEffect(() => {
 		const timerId = setInterval(() => {
 			sec.current -= 1;
-			if (sec.current === 0 && min.current === 0) {
-				clearInterval(timerId);
-			} else if (sec.current === 0) {
-				setTimerSec(60);
-				min.current -= 1;
-				setTimerMin((prev) => prev - 1);
+			if (sec.current === 0) {
+				if (min.current === 0) {
+					clearInterval(timerId);
+				} else {
+					setTimerSec(59);
+					min.current -= 1;
+					setTimerMin((prev) => prev - 1);
+				}
 			} else {
 				setTimerSec((prev) => prev - 1);
 			}
