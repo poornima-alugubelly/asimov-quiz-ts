@@ -60,7 +60,13 @@ export const Result = () => {
 					quizId: selectedQuiz?.id,
 				},
 			});
-			updateUserService(user?.uid, currQuizTotal, selectedQuiz?.title);
+			updateUserService(
+				user?.uid,
+				currQuizTotal,
+				selectedQuiz?.title,
+				quizPass,
+				selectedQuiz?.id
+			);
 		}
 		currTotal.current = currQuizTotal;
 

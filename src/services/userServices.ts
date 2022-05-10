@@ -5,7 +5,9 @@ import { attemptedQuizzes, leaderBoard } from "../types";
 export const updateUserService = async (
 	uid: string | undefined,
 	currScore: number,
-	currQuiz: string | undefined
+	currQuiz: string | undefined,
+	quizPass: boolean,
+	quizId: string | undefined
 ) => {
 	const dbUser = collection(db, "users");
 	const data = await getDocs(dbUser);
@@ -22,7 +24,7 @@ export const updateUserService = async (
 		totalScore: currScore + userData.totalScore,
 		quizzesAttempted: [
 			...userData.quizzesAttempted,
-			{ quizCategory: currQuiz, quizScore: currScore },
+			{ quizCategory: currQuiz, quizScore: currScore, quizPass, quizId },
 		],
 	});
 };

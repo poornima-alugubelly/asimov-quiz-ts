@@ -17,6 +17,7 @@ export const UserProgress = () => {
 			setProgress(response);
 		})();
 	}, []);
+	console.log({ progress });
 
 	return authLoading ? (
 		<Loader />

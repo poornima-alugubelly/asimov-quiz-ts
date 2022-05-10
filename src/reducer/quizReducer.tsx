@@ -26,6 +26,7 @@ export const quizReducer = (state: quizReducerState, action: quizAction) => {
 		}
 
 		case UPDATE_USER: {
+			console.log(action.payload);
 			return {
 				...state,
 				totalScore: state.totalScore + action.payload.addScore,
